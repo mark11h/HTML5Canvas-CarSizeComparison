@@ -3,3 +3,7 @@ canvas {
 	background-color: #f0f0f0;
 	border: solid 1px #000000;
 }
+
+.colright {
+	text-align: right;
+}

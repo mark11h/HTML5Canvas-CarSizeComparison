@@ -17,21 +17,28 @@
 						<th>Length</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tfoot>
+					<tr>
+						<td colspan="3" class="colright">
+							<input type="button" value="Add Comparison" id="add"/>
+						</td>
+					</tr>
+				</tfoot>
+				<tbody id="carRows">
 					<tr>
 						<td>
-							<input type="text" id="car" />
+							<input type="text" />
 						</td>
 						<td>
-							<input type="number" step="any" id="width" />
+							<input type="number" step="any" />
 						</td>
 						<td>
-							<input type="number" step="any" id="height" />
+							<input type="number" step="any" />
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<input type="button" value="Display Size" id="compare"/>
+			<input type="button" value="Display Size Comparison" id="compare"/>
 		</section>
 		<canvas id="canvas" width="800" height="800"> <!--width and height specified here or else canvas drawings are stretched-->
 			Your browser does not support the HTML5 canvas tag.
