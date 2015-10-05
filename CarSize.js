@@ -18,24 +18,36 @@ function compareSizes() {
 	
 	var carRows = document.getElementById('carRows');
 	
-	var fromLeft = 0;
 	var previousFillStyle;
 	
-	for (row = 0; row < carRows.rows.length; row++) {		
-		var car = carRows.rows[row].cells[0].children[0].value;
+	var cars = [];
+	
+	for (row = 0; row < carRows.rows.length; row++) {
+		var name = carRows.rows[row].cells[0].children[0].value;
 		var width = parseFloat(carRows.rows[row].cells[1].children[0].value);
 		var height = parseFloat(carRows.rows[row].cells[2].children[0].value);
 		
-		var fillStyle = get_random_color();
+		var car = { name: name, width: width, height: height };
+		
+		cars.push(car);
+	}
+	
+	var sortedCars = cars.sort(compare);
+	
+	for (i = 0; i < sortedCars.length; i++) {		
+		var car = sortedCars[i].name;
+		var width = sortedCars[i].width;
+		var height = sortedCars[i].height;
+		
+		var fillStyle = getRandomColour();
 		
 		while (fillStyle === previousFillStyle)
-			fillStyle = get_random_color();
+			fillStyle = getRandomColour();
 		
 		c.fillStyle = fillStyle;
 		
-		c.fillRect(fromLeft, 0, width, height); //1 = pixels from left, 2 = pixels from top, 3 = width, 4 = height
+		c.fillRect(0, 0, width, height); //1 = pixels from left, 2 = pixels from top, 3 = width, 4 = height
 		
-		fromLeft += width;
 		previousFillStyle = fillStyle;
     }
 }
@@ -53,9 +65,17 @@ function addRow() {
 	lengthCell.innerHTML = '<input type="number" step="any" />';
 }
 
-function get_random_color() {
+function getRandomColour() {
   function c() {
     return Math.floor(Math.random()*256).toString(16)
   }
   return "#"+c()+c()+c();
+}
+
+function compare(a,b) {
+  if (a.width > b.width)
+    return -1;
+  if (a.width < b.width)
+    return 1;
+  return 0;
 }
